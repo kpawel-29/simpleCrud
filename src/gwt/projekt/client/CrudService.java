@@ -12,5 +12,5 @@ public interface CrudService extends RemoteService{
 	ArrayList<AdressBook> read();
 	ArrayList<AdressBook> update(AdressBook ab);
 	AdressBook find(String name);
-	 
+	ArrayList<AdressBook> delete(String name);
 }

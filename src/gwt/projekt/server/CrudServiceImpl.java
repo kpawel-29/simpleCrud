@@ -54,4 +54,10 @@ public class CrudServiceImpl extends RemoteServiceServlet implements CrudService
 		
 	}
 
+	@Override
+	public ArrayList<AdressBook> delete(String name) {
+		abList.remove(find(name));		
+		return abList;
+	}
+
 }

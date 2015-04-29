@@ -90,9 +90,19 @@ public class Crud implements EntryPoint, Serializable{
 		public void onSuccess(ArrayList<AdressBook> result) {
 			displayResult(result);			
 		}
-		
 	};
-		//
+	AsyncCallback<ArrayList<AdressBook>> callbackDelete = new AsyncCallback<ArrayList<AdressBook>>() {
+		
+		@Override
+		public void onSuccess(ArrayList<AdressBook> result) {
+			displayResult(result);
+		}
+		
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("errorcallbackDelete");	
+		}
+	};
 	@Override
 	public void onModuleLoad() {
 		
@@ -145,8 +155,7 @@ public class Crud implements EntryPoint, Serializable{
 			public void onClick(ClickEvent event) {
 				deleteRow(rowCount);		
 			}
-		});
-	    
+		});    
 	    
 	}
 	
@@ -155,7 +164,7 @@ public class Crud implements EntryPoint, Serializable{
 	}
 	
 	public void deleteRow(int row){
-		wynikLabel.setText(t.getHTML(row, 0));
+		crudService.delete(t.getText(row, 0), callbackDelete);
 	}
 	
 	private void displayResult(ArrayList<AdressBook> abList){
@@ -164,13 +173,5 @@ public class Crud implements EntryPoint, Serializable{
 			createFlexTable(adressBook);
 		}
 	}
-	
-	/*
-	
-	private ArrayList<AdressBook> delete(AdressBook ab) {
-		abList.remove(ab);
-		
-		return abList;
-	}*/
 	
 }

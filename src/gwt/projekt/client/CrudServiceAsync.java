@@ -15,6 +15,8 @@ public interface CrudServiceAsync {
 	void update(AdressBook ab, AsyncCallback<ArrayList<AdressBook>> callbackUpdate);
 
 	void find(String name, AsyncCallback<AdressBook> callbackFind);
+
+	void delete(String name, AsyncCallback<ArrayList<AdressBook>> callbackDelete);
 		
 	
 
