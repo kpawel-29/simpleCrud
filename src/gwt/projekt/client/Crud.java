@@ -86,8 +86,6 @@ public class Crud implements EntryPoint, Serializable{
 			public void onClick(ClickEvent event) {
 				AdressBook ab = new AdressBook(tb1.getText(),Integer.valueOf(tb2.getText()), tb3.getText(), Integer.valueOf(tb4.getText()));
 				crudService.create(ab, callbackAb);
-				//abList.add(ab);
-				//wynikLabel.setText(updateList());
 			}
 		});
 		
@@ -126,7 +124,8 @@ public class Crud implements EntryPoint, Serializable{
 	}
 	
 	public void editRow(int row){
-		wynikLabel.setText(t.getHTML(row, 0));
+		
+		crudService.update(ab, callbackArray);
 	}
 	public void deleteRow(int row){
 		wynikLabel.setText(t.getHTML(row, 0));

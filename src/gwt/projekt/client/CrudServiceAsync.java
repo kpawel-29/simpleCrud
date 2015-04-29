@@ -13,6 +13,8 @@ public interface CrudServiceAsync {
 	void read(AsyncCallback<ArrayList<AdressBook>> callbackArray);
 
 	void update(AdressBook ab, AsyncCallback<ArrayList<AdressBook>> callbackArray);
+
+	void find(String name, AsyncCallback<AdressBook> callbackAb);
 		
 	 
 
