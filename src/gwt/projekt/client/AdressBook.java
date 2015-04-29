@@ -3,7 +3,6 @@ package gwt.projekt.client;
 import java.io.Serializable;
 
 public class AdressBook implements Serializable{
-	private int id = 0;
 	private String name;
 	private int year;
 	private String adress;
@@ -11,14 +10,6 @@ public class AdressBook implements Serializable{
 	
 	public AdressBook(){
 		
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public AdressBook(String name, int year, String adress, int tel) {

@@ -11,6 +11,8 @@ public interface CrudServiceAsync {
 	void create(AdressBook ab, AsyncCallback<AdressBook> callbackAb);
 
 	void read(AsyncCallback<ArrayList<AdressBook>> callbackArray);
+
+	void update(AdressBook ab, AsyncCallback<ArrayList<AdressBook>> callbackArray);
 		
 	 
 

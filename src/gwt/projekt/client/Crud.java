@@ -138,13 +138,8 @@ public class Crud implements EntryPoint, Serializable{
 		}
 	}
 	
+	/*
 	
-	private ArrayList<AdressBook> update(AdressBook ab, int id) {
-		abList.remove(id);
-		abList.add(ab);
-		
-		return abList;
-	}
 	private ArrayList<AdressBook> delete(AdressBook ab) {
 		abList.remove(ab);
 		
