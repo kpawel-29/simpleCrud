@@ -77,8 +77,8 @@ public class Crud implements EntryPoint, Serializable{
 		RootPanel.get().add(wynikLabel);
 		RootPanel.get().add(t);
 		
-		createFlexTable(ab);
-	    
+		if(ab.getTel() != 0)
+			crudService.read(callbackArray);
 		
 		dodajBtn.addClickHandler(new ClickHandler() {
 			
@@ -105,25 +105,32 @@ public class Crud implements EntryPoint, Serializable{
 	    t.setText(rowCount, 1, String.valueOf(ab.getTel()));
 	    t.setText(rowCount, 2, ab.getAdress());
 	    t.setText(rowCount, 3, String.valueOf(ab.getYear()));
-	    t.setHTML(rowCount, 4, editButton.toString());
-	    t.setHTML(rowCount, 5, deleteButton.toString());
+	    t.setWidget(rowCount, 4, editButton);
+	    t.setWidget(rowCount, 5, deleteButton);
 	    
-	    editButton.addClickHandler(new ClickHandler() {
-			
+	    editButton.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
-				tb1.setText(t.getHTML(3, 2));				
+				editRow(rowCount);		
 			}
 		});
 	    
+	    deleteButton.addClickHandler(new ClickHandler() {			
+			@Override
+			public void onClick(ClickEvent event) {
+				deleteRow(rowCount);		
+			}
+		});
+	    
+	    
 	}
 	
-	/*private void updateAdressBook(AdressBook ab){
-		int id = abList.indexOf(ab);
-		update(abList, ab, id);
-	}*/
-	
-	
+	public void editRow(int row){
+		wynikLabel.setText(t.getHTML(row, 0));
+	}
+	public void deleteRow(int row){
+		wynikLabel.setText(t.getHTML(row, 0));
+	}
 	
 	private void displayResult(ArrayList<AdressBook> abList){
 		for (AdressBook adressBook : abList) {
@@ -131,20 +138,6 @@ public class Crud implements EntryPoint, Serializable{
 		}
 	}
 	
-	
-	
-	/*private ArrayList<AdressBook> create(ArrayList<AdressBook> abList, AdressBook ab) {
-		abList.add(ab);		
-		return abList;
-	}*/
-	/*private AdressBook read(AdressBook ab) {
-		AdressBook findAB = new AdressBook();
-		for (AdressBook adressBook : abList) {
-			if(adressBook.getName().equals(ab.getName()))
-				findAB = adressBook;
-		}
-		return findAB;
-	}
 	
 	private ArrayList<AdressBook> update(AdressBook ab, int id) {
 		abList.remove(id);

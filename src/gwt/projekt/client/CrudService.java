@@ -9,5 +9,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface CrudService extends RemoteService{
 	String updateList();
 	AdressBook create(AdressBook ab);
+	ArrayList<AdressBook> read();
 	 
 }

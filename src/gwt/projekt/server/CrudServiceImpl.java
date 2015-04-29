@@ -25,4 +25,9 @@ public class CrudServiceImpl extends RemoteServiceServlet implements CrudService
 		return ab;
 	}
 
+	@Override
+	public ArrayList<AdressBook> read() {
+		return abList;
+	}
+
 }
