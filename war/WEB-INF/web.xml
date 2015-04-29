@@ -5,11 +5,21 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
-  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Crud.html</welcome-file>
   </welcome-file-list>
+  
+    
+ <!--  Servlets -->
+ <servlet>
+     <servlet-name>crudServiceImpl</servlet-name>
+     <servlet-class>gwt.projekt.server.CrudServiceImpl</servlet-class>
+ </servlet> 
+ 
+ <servlet-mapping>
+     <servlet-name>crudServiceImpl</servlet-name>
+     <url-pattern>/crud/crud</url-pattern>
+ </servlet-mapping>
 
 </web-app>

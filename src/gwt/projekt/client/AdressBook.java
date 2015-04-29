@@ -1,6 +1,8 @@
 package gwt.projekt.client;
 
-public class AdressBook {
+import java.io.Serializable;
+
+public class AdressBook implements Serializable{
 	private int id = 0;
 	private String name;
 	private int year;
