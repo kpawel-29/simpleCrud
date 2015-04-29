@@ -43,12 +43,34 @@ public class Crud implements EntryPoint {
 				updateList();
 			}
 		});
-
 	}
 	
 	private void updateList(){
 		String text = wynikLabel.getText();
-		text += abList.get(abList.size()-1).getName();
+		for (AdressBook adressBook : abList) {
+			text += adressBook.getName() + " " + adressBook.getTel() + "; ";
+		}		
 		wynikLabel.setText(text);
+	}
+	
+	private ArrayList<AdressBook> create(AdressBook ab) {
+		AdressBook findAB = new AdressBook();
+		
+		return null;
+	}
+	private AdressBook read(ArrayList<AdressBook> abList, AdressBook ab) {
+		AdressBook findAB = new AdressBook();
+		
+		return findAB;
+	}
+	private ArrayList<AdressBook> update(ArrayList<AdressBook> abList, AdressBook ab) {
+		AdressBook findAB = new AdressBook();
+		
+		return null;
+	}
+	private ArrayList<AdressBook> delete(ArrayList<AdressBook> abList, AdressBook ab) {
+		int count = 0;
+		
+		return null;
 	}
 }
