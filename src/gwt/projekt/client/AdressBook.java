@@ -3,6 +3,10 @@ package gwt.projekt.client;
 import java.io.Serializable;
 
 public class AdressBook implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private int year;
 	private String adress;

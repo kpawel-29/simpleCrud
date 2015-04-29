@@ -1,0 +1,2 @@
+serviceClass: gwt.projekt.client.CrudService
+path: 96A25109B076219A78DE0BC5E9418D92.gwt.rpc

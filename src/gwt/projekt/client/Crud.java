@@ -42,7 +42,7 @@ public class Crud implements EntryPoint, Serializable{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("error");
+			Window.alert("errorcallbackArray");
 		}
 		@Override
 		public void onSuccess(ArrayList<AdressBook> result) {
@@ -54,18 +54,45 @@ public class Crud implements EntryPoint, Serializable{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("error");
-			
+			Window.alert("errorcallbackAb");			
 		}
 
 		@Override
 		public void onSuccess(AdressBook result) {
-			createFlexTable(result);	
-			
+			createFlexTable(result);				
 		}
 		
 	};
+	AsyncCallback<AdressBook> callbackFind = new AsyncCallback<AdressBook>() {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("errorcallbackFind");			
+		}
+
+		@Override
+		public void onSuccess(AdressBook result) {
+			result.setYear(Integer.valueOf(tb2.getText()));
+			result.setAdress(tb3.getText());
+			result.setTel(Integer.valueOf(tb4.getText()));
+			crudService.update(result, callbackUpdate);
+		}
 		
+	};
+	AsyncCallback<ArrayList<AdressBook>> callbackUpdate = new AsyncCallback<ArrayList<AdressBook>>() {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("errorcallbackUpdate");			
+		}
+
+		@Override
+		public void onSuccess(ArrayList<AdressBook> result) {
+			displayResult(result);			
+		}
+		
+	};
+		//
 	@Override
 	public void onModuleLoad() {
 		
@@ -84,8 +111,8 @@ public class Crud implements EntryPoint, Serializable{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				AdressBook ab = new AdressBook(tb1.getText(),Integer.valueOf(tb2.getText()), tb3.getText(), Integer.valueOf(tb4.getText()));
-				crudService.create(ab, callbackAb);
+				AdressBook ab1 = new AdressBook(tb1.getText(),Integer.valueOf(tb2.getText()), tb3.getText(), Integer.valueOf(tb4.getText()));
+				crudService.create(ab1, callbackAb);
 			}
 		});
 		
@@ -100,9 +127,9 @@ public class Crud implements EntryPoint, Serializable{
 		Button deleteButton = new Button("Delete");
 		
 	    t.setText(rowCount, 0, ab.getName());
-	    t.setText(rowCount, 1, String.valueOf(ab.getTel()));
+	    t.setText(rowCount, 1, String.valueOf(ab.getYear()));
 	    t.setText(rowCount, 2, ab.getAdress());
-	    t.setText(rowCount, 3, String.valueOf(ab.getYear()));
+	    t.setText(rowCount, 3, String.valueOf(ab.getTel()));
 	    t.setWidget(rowCount, 4, editButton);
 	    t.setWidget(rowCount, 5, deleteButton);
 	    
@@ -124,14 +151,15 @@ public class Crud implements EntryPoint, Serializable{
 	}
 	
 	public void editRow(int row){
-		
-		crudService.update(ab, callbackArray);
+		crudService.find(t.getText(row, 0), callbackFind);		
 	}
+	
 	public void deleteRow(int row){
 		wynikLabel.setText(t.getHTML(row, 0));
 	}
 	
 	private void displayResult(ArrayList<AdressBook> abList){
+		t.removeAllRows();
 		for (AdressBook adressBook : abList) {
 			createFlexTable(adressBook);
 		}

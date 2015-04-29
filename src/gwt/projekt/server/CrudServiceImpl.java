@@ -45,11 +45,13 @@ public class CrudServiceImpl extends RemoteServiceServlet implements CrudService
 
 	@Override
 	public AdressBook find(String name) {
+		AdressBook ab = new AdressBook();
 		for (AdressBook adressBook : abList) {
 			if(adressBook.getName().equals(name))
-				return adressBook;		
+				ab = adressBook;
 		}
-		return null;
+		return ab;
+		
 	}
 
 }
