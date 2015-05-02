@@ -37,8 +37,7 @@ public class CrudServiceImpl extends RemoteServiceServlet implements CrudService
 			if(adressBook.getName().equals(ab.getName()))
 				id = abList.indexOf(adressBook);
 		}
-		abList.remove(id);
-		abList.add(ab);
+		abList.add(id, ab);
 		
 		return abList;
 	}

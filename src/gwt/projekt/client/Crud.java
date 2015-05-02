@@ -7,12 +7,10 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -20,6 +18,10 @@ import com.google.gwt.user.client.ui.TextBox;
 
 public class Crud implements EntryPoint, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*private ArrayList<AdressBook> abList = new ArrayList<>();*/
 	AdressBook ab = new AdressBook();
 	final FlexTable t = new FlexTable();
@@ -32,12 +34,6 @@ public class Crud implements EntryPoint, Serializable{
 	final TextBox tb4 = new TextBox();	
 	
 	private CrudServiceAsync crudService = GWT.create(CrudService.class);
-	private void refreshWatchList() {
-		// Initialize the service proxy.
-		if (crudService == null)
-			crudService = GWT.create(CrudServiceAsync.class);
-	}
-	
 	AsyncCallback<ArrayList<AdressBook>> callbackArray = new AsyncCallback<ArrayList<AdressBook>>() {
 
 		@Override
@@ -128,8 +124,6 @@ public class Crud implements EntryPoint, Serializable{
 		
 	}
 	
-	
-	
 	public void createFlexTable(AdressBook ab){		
 		final int rowCount = t.getRowCount();
 		wynikLabel.setText(String.valueOf(rowCount));
@@ -155,8 +149,7 @@ public class Crud implements EntryPoint, Serializable{
 			public void onClick(ClickEvent event) {
 				deleteRow(rowCount);		
 			}
-		});    
-	    
+		});    	    
 	}
 	
 	public void editRow(int row){
