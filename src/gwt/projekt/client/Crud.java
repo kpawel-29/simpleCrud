@@ -112,7 +112,7 @@ public class Crud implements EntryPoint, Serializable{
 		@Override
 		public void onSuccess(Boolean result) {
 			validateName = result;
-			wynikLabel.setText(result.toString());
+			
 			if(validateName) {
 				Window.alert("Podana nazwa jest zajeta");
 			}else{
@@ -160,7 +160,8 @@ public class Crud implements EntryPoint, Serializable{
 		Button editButton = new Button("Edit");
 		Button deleteButton = new Button("Delete");
 		
-		t.setText(0, 0, "Nazwa");t.setText(0, 1, "Wiek");t.setText(0, 2, "Adres");t.setText(0, 3, "Telefon");t.setText(0, 4, "Telefon");
+		t.setText(0, 0, "Nazwa");t.setText(0, 1, "Wiek");t.setText(0, 2, "Adres");t.setText(0, 3, "Telefon");t.setText(0, 4, "Edycja");
+		t.getFlexCellFormatter().setColSpan(0, 4, 5);
 		final int rowCount = t.getRowCount();
 	    t.setText(rowCount, 0, ab.getName());
 	    t.setText(rowCount, 1, String.valueOf(2015 - ab.getYear()));
