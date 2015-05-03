@@ -17,6 +17,8 @@ public interface CrudServiceAsync {
 	void find(String name, AsyncCallback<AdressBook> callbackFind);
 
 	void delete(String name, AsyncCallback<ArrayList<AdressBook>> callbackDelete);
+
+	void validateName(String name, AsyncCallback<Boolean> callbackValidate);
 		
 	
 

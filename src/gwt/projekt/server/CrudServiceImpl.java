@@ -9,6 +9,10 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class CrudServiceImpl extends RemoteServiceServlet implements CrudService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<AdressBook> abList = new ArrayList<>();
 	@Override
 	public String updateList() {
@@ -57,6 +61,15 @@ public class CrudServiceImpl extends RemoteServiceServlet implements CrudService
 	public ArrayList<AdressBook> delete(String name) {
 		abList.remove(find(name));		
 		return abList;
+	}
+
+	@Override
+	public boolean validateName(String name) {
+		for (AdressBook adressBook : abList) {
+			if(adressBook.getName().equals(name))
+				return true;
+		}
+		return false;
 	}
 
 }

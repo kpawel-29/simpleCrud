@@ -25,6 +25,7 @@ public class Crud implements EntryPoint, Serializable{
 	/*private ArrayList<AdressBook> abList = new ArrayList<>();*/
 	AdressBook ab = new AdressBook();
 	final FlexTable t = new FlexTable();
+	final FlexTable t1 = new FlexTable();
 	
 	final Button dodajBtn = new Button("Dodaj");
 	final Label wynikLabel = new Label();
@@ -32,6 +33,7 @@ public class Crud implements EntryPoint, Serializable{
 	final TextBox tb2 = new TextBox();	
 	final TextBox tb3 = new TextBox();
 	final TextBox tb4 = new TextBox();	
+	boolean validateName = false;
 	
 	private CrudServiceAsync crudService = GWT.create(CrudService.class);
 	AsyncCallback<ArrayList<AdressBook>> callbackArray = new AsyncCallback<ArrayList<AdressBook>>() {
@@ -99,13 +101,41 @@ public class Crud implements EntryPoint, Serializable{
 			Window.alert("errorcallbackDelete");	
 		}
 	};
+	
+	AsyncCallback<Boolean> callbackValidate = new AsyncCallback<Boolean>() {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("ErrorCallbackValidate");
+		}
+
+		@Override
+		public void onSuccess(Boolean result) {
+			validateName = result;
+			wynikLabel.setText(result.toString());
+			if(validateName) {
+				Window.alert("Podana nazwa jest zajeta");
+			}else{
+				AdressBook ab1 = new AdressBook(tb1.getText(),Integer.valueOf(tb2.getText()), tb3.getText(), Integer.valueOf(tb4.getText()));
+				crudService.create(ab1, callbackAb);
+			}
+		}
+		
+	};
+	
 	@Override
 	public void onModuleLoad() {
+
+		t1.setText(0, 0, "Nazwa");
+		t1.setWidget(0, 1, tb1);;
+		t1.setText(1, 0, "Rok urodzenia");
+		t1.setWidget(1, 1, tb2);;
+		t1.setText(2, 0, "Adres");
+		t1.setWidget(2, 1, tb3);;
+		t1.setText(3, 0, "Telefon");
+		t1.setWidget(3, 1, tb4);
 		
-		RootPanel.get().add(tb1);
-		RootPanel.get().add(tb2);
-		RootPanel.get().add(tb3);
-		RootPanel.get().add(tb4);
+		RootPanel.get().add(t1);
 		RootPanel.get().add(dodajBtn);
 		RootPanel.get().add(wynikLabel);
 		RootPanel.get().add(t);
@@ -117,16 +147,18 @@ public class Crud implements EntryPoint, Serializable{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				AdressBook ab1 = new AdressBook(tb1.getText(),Integer.valueOf(tb2.getText()), tb3.getText(), Integer.valueOf(tb4.getText()));
-				crudService.create(ab1, callbackAb);
+				crudService.validateName(tb1.getName(), callbackValidate);
+				
+				
 			}
 		});
 		
 	}
 	
 	public void createFlexTable(AdressBook ab){		
-		final int rowCount = t.getRowCount();
-		wynikLabel.setText(String.valueOf(rowCount));
+		final int rowCount = t.getRowCount()+1;
+		
+		//wynikLabel.setText(String.valueOf(rowCount));
 		Button editButton = new Button("Edit");
 		Button deleteButton = new Button("Delete");
 		
