@@ -119,8 +119,7 @@ public class Crud implements EntryPoint, Serializable{
 				AdressBook ab1 = new AdressBook(tb1.getText(),Integer.valueOf(tb2.getText()), tb3.getText(), Integer.valueOf(tb4.getText()));
 				crudService.create(ab1, callbackAb);
 			}
-		}
-		
+		}		
 	};
 	
 	@Override
@@ -147,8 +146,7 @@ public class Crud implements EntryPoint, Serializable{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				crudService.validateName(tb1.getName(), callbackValidate);
-				
+				crudService.validateName(tb1.getText(), callbackValidate);	
 				
 			}
 		});
@@ -156,14 +154,16 @@ public class Crud implements EntryPoint, Serializable{
 	}
 	
 	public void createFlexTable(AdressBook ab){		
-		final int rowCount = t.getRowCount()+1;
+		
 		
 		//wynikLabel.setText(String.valueOf(rowCount));
 		Button editButton = new Button("Edit");
 		Button deleteButton = new Button("Delete");
 		
+		t.setText(0, 0, "Nazwa");t.setText(0, 1, "Wiek");t.setText(0, 2, "Adres");t.setText(0, 3, "Telefon");t.setText(0, 4, "Telefon");
+		final int rowCount = t.getRowCount();
 	    t.setText(rowCount, 0, ab.getName());
-	    t.setText(rowCount, 1, String.valueOf(ab.getYear()));
+	    t.setText(rowCount, 1, String.valueOf(2015 - ab.getYear()));
 	    t.setText(rowCount, 2, ab.getAdress());
 	    t.setText(rowCount, 3, String.valueOf(ab.getTel()));
 	    t.setWidget(rowCount, 4, editButton);

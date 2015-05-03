@@ -35,12 +35,13 @@ public class CrudServiceImpl extends RemoteServiceServlet implements CrudService
 	}
 
 	@Override
-	public ArrayList<AdressBook> update(AdressBook ab) {
+	public ArrayList<AdressBook> update(AdressBook ab) {		
 		int id = 0;
 		for (AdressBook adressBook : abList) {
 			if(adressBook.getName().equals(ab.getName()))
 				id = abList.indexOf(adressBook);
 		}
+		abList.remove(id);
 		abList.add(id, ab);
 		
 		return abList;
