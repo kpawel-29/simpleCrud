@@ -157,8 +157,8 @@ public class Crud implements EntryPoint, Serializable{
 		
 		
 		//wynikLabel.setText(String.valueOf(rowCount));
-		Button editButton = new Button("Edit");
-		Button deleteButton = new Button("Delete");
+		Button editButton = new Button("Edytuj");
+		Button deleteButton = new Button("Skasuj");
 		
 		t.setText(0, 0, "Nazwa");t.setText(0, 1, "Wiek");t.setText(0, 2, "Adres");t.setText(0, 3, "Telefon");t.setText(0, 4, "Edycja");
 		t.getFlexCellFormatter().setColSpan(0, 4, 5);
